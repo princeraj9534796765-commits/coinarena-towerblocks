@@ -408,8 +408,10 @@ var Game = /** @class */ (function () {
 
   this.updateState(this.STATES.ENDED);
 
-  const finalScore =
-      this.blocks.length - 1;
+const finalScore =
+    parseInt(
+      this.scoreContainer.innerHTML
+    ) || 0;
 
   try {
 
