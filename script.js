@@ -404,9 +404,26 @@ var Game = /** @class */ (function () {
     this.stage.setCamera(this.blocks.length * 1.5);
     if (this.blocks.length >= 5) this.instructions.classList.add("hide");
   };
-  Game.prototype.endGame = function () {
-    this.updateState(this.STATES.ENDED);
-  };
+ Game.prototype.endGame = function () {
+
+  this.updateState(this.STATES.ENDED);
+
+  const finalScore =
+      this.blocks.length - 1;
+
+  try {
+
+    ScoreChannel.postMessage(
+      String(finalScore)
+    );
+
+  } catch (e) {
+
+    console.log(
+      "Flutter not connected"
+    );
+  }
+};
   Game.prototype.tick = function () {
     var _this = this;
     this.blocks[this.blocks.length - 1].tick();
